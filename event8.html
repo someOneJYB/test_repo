@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="wrapper">
+    <a href="http://www.baidu.com" class="link">click me</a>
+</div>
+<script>
+
+    const $wrapper = document.querySelector('.wrapper')
+    const $link = document.querySelector('.link')
+    let e1, e2;
+    let copy1, copy2;
+    $link.addEventListener('click', (e) => {
+        e1 = e
+        copy1 = copy(e1)
+        console.log('link clicked', copy1)
+
+    })
+    $wrapper.addEventListener('click', (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        //e.returnValue = false
+        e2 = e
+        copy2 = copy(e2)
+        console.log('wrapper clicked', copy2)
+        console.log(e1 === e2, e1, e2)
+        diff(copy1, copy2)
+    })
+    function copy(obj) {
+        let res = new Map()
+        for (let key in obj) {
+            res.set(key, obj[key])
+        }
+        return res;
+    }
+    function diff(m1, m2) {
+        if (m1.size < m2.size) {
+            console.log('different length')
+                [m1, m2] = [m2, m1]
+        }
+        for (let key of m1.keys()) {
+            if (m1.get(key) !== m2.get(key)) {
+                console.log(`${key}:${m1.get(key)},${m2.get(key)}`)
+            }
+        }
+    }
+</script>
+</body>
+</html>

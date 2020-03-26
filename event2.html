@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .wrapper{
+        height: 40px;
+        border: 1px solid red;
+    }
+</style>
+<body>
+
+<div class='wrapper'>
+    <button>click me</button>
+</div>
+<script>
+    function print(e){
+        let currentTarget = e.currentTarget
+        switch(e.eventPhase){
+            case 1:
+                console.log(currentTarget,':CAPTURING_PHASE')
+                break
+            case 2:
+                console.log(currentTarget,':AT_TARGET')
+                break
+            case 3:
+                console.log(currentTarget,':BUBBLING_PHASE')
+                break
+            case 0:
+                console.log(currentTarget,':NONE')
+                break
+            default:
+                throw new TypeError('what happened')
+
+        }
+    }
+    const $wrapper = document.querySelector('.wrapper')
+    const $button = document.querySelector('button')
+    $wrapper.addEventListener('click',print,false)
+    $wrapper.addEventListener('click',print,false)
+    $wrapper.addEventListener('click',print,true)
+</script>
+</body>
+</html>

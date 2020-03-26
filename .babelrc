@@ -1,0 +1,21 @@
+{
+  "presets": [
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "chrome": 59,
+          "edge": 13,
+          "firefox": 50,
+          "safari": 8
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-export-default-from"
+  ]
+}
