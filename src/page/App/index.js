@@ -6,6 +6,7 @@ import edit from '../../svg/edit.svg'
 import CustomIcon from '../../component/CustomIcon'
 import { Button } from 'antd'
 import  uniq from 'lodash/uniq'
+import ScatterGiagram from '../../component/ScatterGiagram'
 export class App extends React.Component {
   constructor(props) {
       super(props);
@@ -21,6 +22,7 @@ export class App extends React.Component {
     uniq(1)
     return (
         <div className="App">
+            <ScatterGiagram/>
             <div onClick={() => this.setState({
                 change: !this.state.change,
             })}>change</div>

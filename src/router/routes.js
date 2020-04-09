@@ -1,5 +1,3 @@
-import App from '../page/App';
-import Home from '../page/Home';
 import React from 'react'
 import Loadable from 'react-loadable';
 const Loading = () => <h3>加载中</h3>
@@ -48,6 +46,14 @@ export default [
         path: '/z',
         component: Loadable({
             loader: () => import('../page/Z'),
+            loading: Loading,
+        }),
+        exact: true,
+    },
+    {
+        path: '/hook',
+        component: Loadable({
+            loader: () => import('../page/Hook'),
             loading: Loading,
         }),
         exact: true,

@@ -8,6 +8,9 @@ const mergeConfig = require(`./webpack.${mode}.js`);
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 const dirname = process.cwd();
 const commonConfig = {
+    // resolveLoader: {
+    //     modules: [path.resolve(__dirname, '../loaders'), 'node_modules']
+    // },
     entry: path.resolve(dirname, 'src/index.js'),
     output: {
         path: path.resolve(dirname, 'dist'),
@@ -37,7 +40,7 @@ const commonConfig = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: [{
+                use: [ {
                     loader: 'babel-loader',
                 }],
             },
