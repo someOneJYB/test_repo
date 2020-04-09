@@ -22,8 +22,8 @@
         switch(e.eventPhase){
             case 1:
                 console.log(currentTarget,':CAPTURING_PHASE')
-                // e.stopPropagation()
-                // e.stopImmediatePropagation()
+                e.stopPropagation()
+                e.stopImmediatePropagation()
                 break
             case 2:
                 console.log(currentTarget,':AT_TARGET')
@@ -63,10 +63,10 @@
 
     const $wrapper = document.querySelector('.wrapper')
     const $button = document.querySelector('button')
-    $wrapper.addEventListener('click',print,false)
-    $wrapper.addEventListener('click',print,true)
     $wrapper.addEventListener('click',follow,false)
     $wrapper.addEventListener('click',follow,true)
+    $wrapper.addEventListener('click',print,false)
+    $wrapper.addEventListener('click',print,true)
 </script>
 </body>
 </html>
