@@ -1,17 +1,34 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const merge = require('webpack-merge')
 const argv = require('yargs-parser')(process.argv.slice(2));
 const mode = argv.mode || 'development';
 const mergeConfig = require(`./webpack.${mode}.js`);
+const LoadablePlugin = require('@loadable/webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 const dirname = process.cwd();
+const isDebug = (process.env.NODE_ENV === 'development');
+const manifestPath = isDebug ? '../vendor/lib/debug/manifest.json' :
+    '../vendor/lib/min/manifest.json';
+const libPath = isDebug ? '../vendor/lib/debug/*.js' :
+    '../vendor/lib/min/*.js';
+const publicPath = '/';
+const baseConfig = {
+    isHash: true,
+    publicPath: publicPath,
+    outPath: './dist/',
+    publicLibPath: publicPath + 'lib/min',
+    outLibPath: 'lib/min',
+    clean: 'dist',
+};
 const commonConfig = {
     // resolveLoader: {
     //     modules: [path.resolve(__dirname, '../loaders'), 'node_modules']
     // },
-    entry: path.resolve(dirname, 'src/index.js'),
+    entry: [path.resolve(dirname, 'src/index.js')],
     output: {
         path: path.resolve(dirname, 'dist'),
         filename: '[name].bundle.[hash:8].js',
@@ -24,7 +41,27 @@ const commonConfig = {
         new MiniCssExtractPlugin({
             filename: 'css/[name].css'
         }),
-        new SpriteLoaderPlugin({ plainSprite: true })
+        new webpack.DllReferencePlugin({
+                context: __dirname,
+                manifest: require(manifestPath),
+            },
+
+        ),
+        new AddAssetHtmlPlugin([
+            {
+                filepath: path.resolve(__dirname, libPath),
+                outputPath: baseConfig.outLibPath,
+                publicPath: baseConfig.publicLibPath,
+                includeSourcemap: false
+            }
+        ]),
+        new SpriteLoaderPlugin({ plainSprite: true }),
+        new LoadablePlugin({
+            filename: 'loadable-stats.json',
+            writeToDisk: {
+                filename: path.join(__dirname, '..', 'dist'),
+            },
+        }),
     ],
     resolve: {
         extensions: ['.js', ".ts", ".tsx", '.jsx']
@@ -42,6 +79,9 @@ const commonConfig = {
                 exclude: /node_modules/,
                 use: [ {
                     loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true,
+                    },
                 }],
             },
             {

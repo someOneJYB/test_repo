@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{210:function(e,n,t){"use strict";t.r(n);var a=t(0),c=t.n(a);function r(){return c.a.createElement("div",{className:"App"},c.a.createElement("h1",null,"detail"))}t.d(n,"default",function(){return r})}}]);

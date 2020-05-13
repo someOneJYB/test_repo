@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useForceUpdate, useRef, useReducer, userContext } from 'react'
 import Message from './context'
 import defineHook from './defineHook'
-
+import './hehehe.less'
 // 有state的 function component 执行 setXX 的时候会重新 render，重新执行整个函数
 // 有没有第二个参数。useEffect hook 接受两个参数，第一个是要执行的代码，第二个是一个数组，指定一组依赖的变量，其中任何一个变量发生变化时，此 effect 都会重新执行一次。有没有返回值。 useEffect 的执行代码中可以返回一个函数，在每一次新的 render 进行前或者组件 unmount 之时，都会执行此函数，进行清理工作。
 // useEffect 第二个参数是空数组的时候setCount 无法在 useEffect 中得到值，只会默认初始值。加上第二个值的话会在这个值变化的时候执行
@@ -40,7 +40,7 @@ export default function Home() {
             console.log('count', latestCount.current)
         }, 2000)
         // 连续点击三次重新渲染的时候会依此输出1 2 3 而不是三次3这个就是必报的问题
-    });
+    }, );
     useEffect(function() {
         if(!mount) {
             mount = true
@@ -68,7 +68,7 @@ export default function Home() {
             username: 'superawesome'
         }}>
             <Message/>
-            <p>You clicked {count} times</p>
+            <p className="p-text">You clicked {count} times</p>
             <button onClick={() => setCount(count + 1)}>
                 点击我
             </button>

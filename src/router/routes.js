@@ -1,61 +1,40 @@
 import React from 'react'
-import Loadable from 'react-loadable';
+import loadable from '@loadable/component';
 const Loading = () => <h3>加载中</h3>
 export default [
     {
-        path: '/app',
-        component: Loadable({
-            loader: () => import('../page/App'),
-            loading: Loading,
-        }),
+        path: '/all',
+        component: loadable(() => import('../page/All'), {fallback: Loading,}),
         exact: true,
     },
     {
         path: '/home',
-        component: Loadable({
-            loader: () => import('../page/Home'),
-            loading: Loading,
-        }),
+        component: loadable(() => import('../page/Home'), {fallback: Loading,}),
         exact: true,
     },
     {
         path: '/detail',
-        component: Loadable({
-            loader: () => import('../page/Detail'),
-            loading: Loading,
-        }),
+        component: loadable(() => import('../page/Detail'), {fallback: Loading,}),
         exact: true,
     },
     {
         path: '/x',
-        component: Loadable({
-            loader: () => import('../page/X'),
-            loading: Loading,
-        }),
+        component: loadable(() => import('../page/X'), {fallback: Loading,}),
         exact: true,
     },
     {
         path: '/y',
-        component: Loadable({
-            loader: () => import('../page/Y'),
-            loading: Loading,
-        }),
+        component: loadable(() => import('../page/Y'), {fallback: Loading,}),
         exact: true,
     },
     {
         path: '/z',
-        component: Loadable({
-            loader: () => import('../page/Z'),
-            loading: Loading,
-        }),
+        component: loadable(() => import('../page/Z'), {fallback: Loading,}),
         exact: true,
     },
     {
         path: '/hook',
-        component: Loadable({
-            loader: () => import('../page/Hook'),
-            loading: Loading,
-        }),
+        component: loadable(() => import('../page/hook'), {fallback: Loading,}),
         exact: true,
     },
 ]

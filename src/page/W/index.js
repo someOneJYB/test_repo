@@ -38,7 +38,7 @@ class Input extends React.Component {
  * @function 路由校验去重复
  * @param {Array} arr 路由数组
  */
-const E = ViewLoader(require('../views/App'))
+const E = ViewLoader(require('../views/All'))
 // console.log('e', E.toString())
 // let index = 0;
 function uniqArr(arr) {
@@ -108,7 +108,7 @@ class Root extends Component {
             <Router {...this.props} >
                 <div className="content">
                     {ViewLoader(require('../views/MyTest'))()}
-                    {ViewLoader(require('../views/App'))()}
+                    {ViewLoader(require('../views/All'))()}
                     <Route exact path='/testform' component={this.cp()} />
                     {this.log()}
                     <div onClick={this.handleClick}>请疯狂点击我</div>

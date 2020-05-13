@@ -1,8 +1,8 @@
 import React from 'react'
-import {hydrate} from 'react-dom'
-import configureStore from './store'
+import { render } from 'react-dom'
+import { loadableReady } from '@loadable/component';
 import './index.less';
-import Root from './router'
+import Root from './App'
 // import * as serviceWorker from './serviceWorker';
 
 // serviceWorker.unregister();
@@ -18,7 +18,32 @@ delete window.__STATE__;
  * side pages are identical. This includes markup checking,
  * react comments to identify elements and more.
  */
+const elRoot = document.getElementById('app');
 
-hydrate(
-    <Root store={configureStore(state)} />, document.getElementById('app')
-)
+const renderD = Component => {
+    // eslint-disable-next-line no-undef
+    loadableReady(() => {
+        render(
+            <Component/>, elRoot
+        )
+    });
+};
+
+renderD(Root);
+
+// Webpack Hot Module Replacement API
+if (module.hot) {
+    console.log('hot')
+    module.hot.accept('./App', () => {
+        render(require('./App').default);
+    });
+    // module.hot.check().then(modules => {
+    //   console.log('modules: ', modules);
+    // });
+    // module.hot.addStatusHandler((status) => {
+    //   console.log('status: ', status);
+    //   if (status === 'idle') {
+    //     // window.location.reload()
+    //   }
+    // })
+}

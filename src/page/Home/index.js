@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Btn from '../../component/Mbtn'
 
+import './index.less'
 export default function Home() {
     // Declare a new state variable, which we'll call "count"
     const [count, setCount] = useState({a: 0});
@@ -19,7 +20,7 @@ export default function Home() {
     }, [count]);
     return (
         <div>
-            <p>You clicked {count.a} times</p>
+            <p className="text">You clicked {count.a} times</p>
             <button onClick={() => setCount({a: count.a + 1})}>
                 Click me
             </button>
