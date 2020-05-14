@@ -25,7 +25,7 @@ export default function Home() {
                 Click me
             </button>
             <Btn text={count.a}/>
-            <div onClick={handleClick}>count 值的变化</div>
+            <div onClick={handleClick}>count 值的变化12453647</div>
         </div>
     );
 }

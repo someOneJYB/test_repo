@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import createStore from './store';
 
 import AppRoutes from './router';
 
@@ -27,12 +29,14 @@ class App extends Component {
     }
     render() {
         return (
+            <Provider store={createStore()}>
             <Router>
                 <AppRoutes
                     context={this.state.context}
                     initialData={this.initialData}
                 />
             </Router>
+            </Provider>
         );
     }
 }

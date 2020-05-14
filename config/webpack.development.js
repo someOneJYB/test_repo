@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+
 const dirname = process.cwd();
 module.exports = {
     mode: 'development',
@@ -11,4 +13,7 @@ module.exports = {
         open: true,
         historyApiFallback: true,
     },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ]
 }

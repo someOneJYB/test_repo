@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { loadableReady } from '@loadable/component';
 import './index.less';
 import Root from './App'
 // import * as serviceWorker from './serviceWorker';
@@ -21,29 +20,9 @@ delete window.__STATE__;
 const elRoot = document.getElementById('app');
 
 const renderD = Component => {
-    // eslint-disable-next-line no-undef
-    loadableReady(() => {
-        render(
-            <Component/>, elRoot
-        )
-    });
+    render(
+        <Component/>, elRoot
+    )
 };
 
 renderD(Root);
-
-// Webpack Hot Module Replacement API
-if (module.hot) {
-    console.log('hot')
-    module.hot.accept('./App', () => {
-        render(require('./App').default);
-    });
-    // module.hot.check().then(modules => {
-    //   console.log('modules: ', modules);
-    // });
-    // module.hot.addStatusHandler((status) => {
-    //   console.log('status: ', status);
-    //   if (status === 'idle') {
-    //     // window.location.reload()
-    //   }
-    // })
-}

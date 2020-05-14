@@ -33,8 +33,8 @@ export default [
         exact: true,
     },
     {
-        path: '/hook',
-        component: loadable(() => import('../page/hook'), {fallback: Loading,}),
+        path: '/hooks',
+        component: loadable(() => import('../page/Hook'), {fallback: Loading,}),
         exact: true,
     },
 ]
