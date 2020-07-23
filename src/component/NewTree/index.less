@@ -1,0 +1,61 @@
+.tree-node {
+  margin-left: 15px;
+  margin-top: 5px;
+  line-height: 20px;
+}
+
+.check-node {
+  display: inline-block;
+  background-color: #fff;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  &::after {
+    content:"✓";
+    color: #fff;
+    line-height:15px;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    position: absolute;
+    left: 7px;
+    top: 0;
+    transform: translate(-50%);
+    border-radius: 2px;
+  }
+}
+
+.half-checked::after {
+  display: block;
+  color: red;
+}
+.checked::after {
+  display: block;
+  color: blue;
+}
+
+
+.angle {
+  display: inline-block;
+}
+.expand::before {
+  transform: rotate(90deg) translate(3px, 3px)
+}
+.single {
+  margin-left: 25px;
+}
+
+.hasChild::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+  position: relative;
+  top: -5px;
+  border-top: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid green;
+  border-left: 5px solid transparent;
+    cursor: pointer;
+    transition: all .5s;
+}

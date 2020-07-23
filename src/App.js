@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import one from './one'
 import { HashRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import createStore from './store';
 
 import AppRoutes from './router';
 
+function f() {
+    return '猪'
+}
+console.log(one)
 class App extends Component {
     constructor(props) {
         super(props);
@@ -25,7 +30,7 @@ class App extends Component {
                 console.error(err);
             }
         }
-        console.log('this.initialData: ', this.initialData);
+        console.log('this.initialData: ');
     }
     render() {
         return (

@@ -1,6 +1,7 @@
 import React from 'react';
+import one from './one.js'
 import App from "../All";
-
+console.log(one)
 class X extends React.Component {
     componentDidMount(){
         console.log('X didmount')

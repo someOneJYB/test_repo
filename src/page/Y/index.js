@@ -1,110 +1,50 @@
-import * as React from 'react'
-import MultiPicker from 'rmc-picker/lib/MultiPicker';
-import Picker from 'rmc-picker/lib/Picker';
-import './index.less'
+import React, {Component} from 'react'
 
-export default class extends React.Component {
+export default class LifeCycle extends Component {
+    static defaultProps = {
+        name: '计数器'
+    };
+
     constructor(props) {
-        super(props)
-        this.state = {
-            selectedValue: []
-        }
-    }
-    //
-    // static getDerivedStateFromProps(nextProps, prevState) {
-    //     const { defaultValue, value } = nextProps
-    //     if (prevState.valuesFromParent) {
-    //         if (value !== prevState.value) {
-    //             return {
-    //                 value,
-    //             }
-    //         }
-    //     } else {
-    //         if (defaultValue !== prevState.defaultValue) {
-    //             return {
-    //                 value: defaultValue,
-    //                 defaultValue,
-    //             }
-    //         }
-    //     }
-    //     return null;
-    // }
-    //
-    // onRadioChange = (checked, item) => {
-    //     const { onChange }  = this.props
-    //     const value = item.value
-    //     if (!this.valuesFromParent) {
-    //         this.setState({
-    //             value: value,
-    //         })
-    //     }
-    //     onChange && onChange(value, item)
-    // }
-
-    componentDidCatch(error, errorInfo) {
-        console.log('error', error, errorInfo)
-    }
-    setScrollValue = (v) => {
-        console.log(v)
-        this.scrollValue = v;
-    }
-    onPickerChange = (v) => {
-        console.log('value', v)
-        this.setScrollValue(v);
-        if (this.props.onPickerChange) {
-            this.props.onPickerChange(v);
-        }
+        super(props);
+        this.state = {number: 0};//初始化默认的状态对象
+        console.log('1. constructor 初始化 props and state');
     }
 
-    onChange = (v) => {
-        console.log('value', v)
-        this.setState({
-            selectedValue: [...v]
-        })
+    componentWillMount() {
+        console.log('2. componentWillMount 组件将要挂载');
     }
 
-    onSingleChange = (v) => {
-        console.log('single', v)
+    componentDidMount() {
+        console.log('4. componentDidMount 组件挂载完成');
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('Counter', nextProps, nextState);
+        console.log('5. shouldComponentUpdate 询问组件是否需要更新');
+        return true;
+    }
+
+    componentWillUpdate() {
+        console.log('6. componentWillUpdate 组件将要更新');
+    }
+
+    componentDidUpdate() {
+        console.log('7. componentDidUpdate 组件更新完毕');
+    }
+
+    add = () => {
+        this.setState({number: this.state.number });
+    };
 
     render() {
-        return (<MultiPicker
-            className="my-picker-indicatorWrap"
-            selectedValue={this.state.selectedValue}
-            onScrollChange={this.setScrollValue}
-            onPickerChange={this.onPickerChange}
-            onValueChange={this.onChange}
-        >
-            <Picker indicatorClassName="my-picker-indicator"  onValueChange={this.onSingleChange}>
-                <Picker.Item className="my-picker-view-item" value="1">one</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="2">two</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="3">three</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="4">four</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="5">five</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="6">six</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="7">seven</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="8">eight</Picker.Item>
-            </Picker>
-            <Picker indicatorClassName="my-picker-indicator">
-                <Picker.Item className="my-picker-view-item" value="11">eleven</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="12">twelve</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="13">thirteen</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="14">fourteen</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="15">fifteen</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="16">sixteen</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="17">seventeen</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="18">eighteen</Picker.Item>
-            </Picker>
-            <Picker indicatorClassName="my-picker-indicator">
-                <Picker.Item className="my-picker-view-item" value="112">eleven</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="122">twelve</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="123">thirteen</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="134">fourteen</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="13e5">fifteen</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="1r6">sixteen</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="1r7">seventeen</Picker.Item>
-                <Picker.Item className="my-picker-view-item" value="1f8">eighteen</Picker.Item>
-            </Picker>
-        </MultiPicker>)
+        console.log('3.render渲染')
+        return (
+            <div style={{border: '5px solid red', padding: '5px'}}>
+                <p>{this.state.number}</p>
+                <button onClick={this.add}>+</button>
+            </div>
+        )
     }
 }
+

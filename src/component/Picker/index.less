@@ -1,0 +1,40 @@
+.picker-header {
+  display: flex;
+  justify-content: space-between;
+  color: deepskyblue;
+  font-size: 16px;
+  padding: 5px 10px;
+  margin: 0;
+}
+.picker-all {
+  height: 180px;
+  width: 100%;
+  position: relative;
+  overflow-y: hidden;
+  box-shadow: #282c34;
+  text-align: center;
+  display: flex;
+  background-color: rgba(0, 0, 0, .1);
+  .picker-con {
+    flex: 1;
+    transform-style: preserve-3d;
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    transition: transform 1s cubic-bezier(0,0,0.3,1);
+  }
+  .picker-item {
+    line-height: 30px;
+    height: 30px;
+    width: 100%;
+  }
+  .absolute-item {
+    top: 60px;
+    line-height: 30px;
+    height: 30px;
+    width: 100%;
+    position: absolute;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+  }
+}

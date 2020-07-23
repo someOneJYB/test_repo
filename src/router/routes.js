@@ -8,6 +8,11 @@ export default [
         exact: true,
     },
     {
+        path: '/mobx',
+        component: loadable(() => import('../page/mobxi'), {fallback: Loading,}),
+        exact: true,
+    },
+    {
         path: '/home',
         component: loadable(() => import('../page/Home'), {fallback: Loading,}),
         exact: true,

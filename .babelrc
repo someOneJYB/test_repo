@@ -4,6 +4,7 @@
     [
       "@babel/preset-env",
       {
+        "modules": false,
         "targets": {
           "chrome": 59,
           "edge": 13,

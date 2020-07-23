@@ -80,9 +80,27 @@ const commonConfig = {
                 use: [ {
                     loader: 'babel-loader',
                     options: {
-                        cacheDirectory: true,
+                        //
+                        // "presets": [
+                        //     "@babel/preset-react",
+                        //     [
+                        //         "@babel/preset-env",
+                        //         {
+                        //             "modules": false
+                        //         }
+                        //     ]
+                        // ],
+                        // "plugins": [
+                        //     "recharts",
+                        //     "@babel/proposal-object-rest-spread",
+                        //     "@babel/plugin-proposal-class-properties",
+                        //     "@babel/plugin-proposal-export-default-from"
+                        // ]
+
+                        // cacheDirectory: true,
                     },
                 }],
+                include: [path.resolve(dirname, 'src'), path.resolve(dirname, 'src/component/Picker/MultiPicker.js')]
             },
             {
                 test: /\.tsx?$/,
